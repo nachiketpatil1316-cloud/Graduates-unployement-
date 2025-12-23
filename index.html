@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graduate Unemployment</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#f1f5f9;
+  --text:#0f172a;
+  --card:#ffffff;
+  --accent:#2563eb;
+}
+body.dark{
+  --bg:#020617;
+  --text:#e5e7eb;
+  --card:#0f172a;
+  --accent:#38bdf8;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"Poppins",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  background:var(--card);
+  padding:10px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
+  z-index:1000;
+}
+.header-left button{
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
+  font-weight:600;
+}
+.header-center{
+  font-weight:700;
+  font-size:1.2rem;
+  text-align:center;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+button{
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
+  font-weight:600;
+}
+.menu{position:relative;}
+.menu-items{
+  display:none;
+  position:absolute;
+  right:0;
+  top:45px;
+  background:var(--card);
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  min-width:140px;
+}
+.menu-items a{
+  display:block;
+  padding:8px 12px;
+  color:var(--text);
+  text-decoration:none;
+}
+.menu-items a:hover{background:rgba(0,0,0,.1);}
+
+/* SECTIONS */
+section{
+  padding:50px 16px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* TITLE + LOGO */
+#home h1{
+  text-align:center;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  background:linear-gradient(90deg,#2563eb,#38bdf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:clamp(1.8rem,5vw,2.6rem);
+  line-height:1.2;
+}
+#home h1 span{display:inline;}
+@media(max-width:600px){#home h1 span{display:block;}}
+#home .logo-icon{
+  width:50px;
+  height:50px;
+  font-size:28px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:floatLogo 3s ease-in-out infinite;
+  margin-top:15px;
+}
+@keyframes floatLogo{
+  0%{transform:translateY(0) rotate(0deg);}
+  25%{transform:translateY(-5px) rotate(5deg);}
+  50%{transform:translateY(0) rotate(0deg);}
+  75%{transform:translateY(-5px) rotate(-5deg);}
+  100%{transform:translateY(0) rotate(0deg);}
+}
+#home p{
+  text-align:center;
+  font-size:1.1rem;
+  max-width:700px;
+  margin:auto;
+  margin-top:15px;
+}
+
+/* CARDS */
+h2{text-align:center;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+.card{
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  overflow:hidden;
+  text-align:center;
+}
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+.card .content{padding:18px;}
+.card i{
+  font-size:32px;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+/* FORM */
+form{
+  max-width:420px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+input,textarea{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <button onclick="toggleLang()">EN / HI</button>
+  </div>
+  <div class="header-center">GRADUATE UNEMPLOYMENT</div>
+  <div class="controls">
+    <button onclick="toggleTheme()">🌙</button>
+    <div class="menu">
+      <button onclick="toggleMenu()">⋮</button>
+      <div class="menu-items" id="menuItems">
+        <a href="#home">Home</a>
+        <a href="#causes">Causes</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#feedback">Feedback</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="home">
+  <h1><span>GRADUATE</span><span>UNEMPLOYMENT</span></h1>
+  <div class="logo-icon">🎓</div>
+  <p data-en="Graduate unemployment is a major socioeconomic issue affecting educated youth. Challenges include skill mismatch, lack of practical experience, competition, and technological changes. This impacts career growth and societal stability."
+     data-hi="स्नातक बेरोजगारी एक प्रमुख सामाजिक–आर्थिक समस्या है जो शिक्षित युवाओं को प्रभावित करती है। चुनौतियों में कौशल असंगति, व्यावहारिक अनुभव की कमी, प्रतिस्पर्धा और तकनीकी परिवर्तन शामिल हैं। इसका करियर विकास और सामाजिक स्थिरता पर प्रभाव होता है।">
+    Graduate unemployment is a major socioeconomic issue affecting educated youth. Challenges include skill mismatch, lack of practical experience, competition, and technological changes. This impacts career growth and societal stability.
+  </p>
+</section>
+
+<!-- CAUSES -->
+<section id="causes">
+<h2 data-en="Causes" data-hi="कारण">Causes</h2>
+<div class="grid">
+  <div class="card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500&q=80"><div class="content"><i class="fas fa-brain"></i><p data-en="Skill mismatch." data-hi="कौशल असंगति।">Skill mismatch.</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=500&q=80"><div class="content"><i class="fas fa-briefcase"></i><p data-en="Lack of experience." data-hi="अनुभव की कमी।">Lack of experience.</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80"><div class="content"><i class="fas fa-robot"></i><p data-en="Automation impact." data-hi="स्वचालन का प्रभाव।">Automation impact.</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80"><div class="content"><i class="fas fa-users"></i><p data-en="High competition." data-hi="उच्च प्रतिस्पर्धा।">High competition.</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=500&q=80"><div class="content"><i class="fas fa-book"></i><p data-en="Outdated syllabus." data-hi="पुराना पाठ्यक्रम।">Outdated syllabus.</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80"><div class="content"><i class="fas fa-map-marker-alt"></i><p data-en="Regional imbalance." data-hi="क्षेत्रीय असंतुलन।">Regional imbalance.</p></div></div>
+</div>
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solutions">
+<h2 data-en="Solutions" data-hi="समाधान">Solutions</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80">
+    <div class="content">
+      <i class="fas fa-laptop-code"></i>
+      <p data-en="Skill development." data-hi="कौशल विकास।">Skill development.</p>
+      <button onclick="openLink('https://www.skillindia.gov.in')">Explore More</button>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80">
+    <div class="content">
+      <i class="fas fa-user-tie"></i>
+      <p data-en="Internships." data-hi="इंटर्नशिप।">Internships.</p>
+      <button onclick="openLink('https://internshala.com')">Explore More</button>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=500&q=80">
+    <div class="content">
+      <i class="fas fa-lightbulb"></i>
+      <p data-en="Entrepreneurship." data-hi="उद्यमिता।">Entrepreneurship.</p>
+      <button onclick="openLink('https://startupindia.gov.in')">Explore More</button>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=500&q=80">
+    <div class="content">
+      <i class="fas fa-handshake"></i>
+      <p data-en="Career guidance." data-hi="करियर मार्गदर्शन।">Career guidance.</p>
+      <button onclick="openLink('https://www.ncs.gov.in')">Explore More</button>
+    </div>
+  </div>
+  
+  <!-- Corrected Professional Networking Card -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1581091215367-1c0d9d4b0b91?auto=format&fit=crop&w=500&q=80" alt="Professional Networking">
+    <div class="content">
+      <i class="fas fa-network-wired"></i>
+      <p data-en="Professional Networking." data-hi="व्यावसायिक नेटवर्किंग।">Professional Networking.</p>
+      <button onclick="openLink('https://www.linkedin.com')">Explore More</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=500&q=80">
+    <div class="content">
+      <i class="fas fa-graduation-cap"></i>
+      <p data-en="Higher education." data-hi="उच्च शिक्षा।">Higher education.</p>
+      <button onclick="openLink('https://www.coursera.org')">Explore More</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback">
+<h2 data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</h2>
+
+<form name="feedback" method="POST" data-netlify="true" action="/thankyou.html">
+  <input type="hidden" name="form-name" value="feedback">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <textarea name="message" placeholder="Your Feedback" required></textarea>
+  <button type="submit">Submit</button>
+</form>
+
+</section>
+
+<script>
+function toggleMenu(){const m=document.getElementById("menuItems");m.style.display=m.style.display==="block"?"none":"block";}
+function toggleTheme(){document.body.classList.toggle("dark");}
+let lang="en";
+function toggleLang(){lang=lang==="en"?"hi":"en";document.querySelectorAll("[data-en]").forEach(el=>{el.innerText=el.getAttribute("data-"+lang);});}
+function openLink(url){window.open(url,"_blank")}
+</script>
+
+</body>
+</html>
